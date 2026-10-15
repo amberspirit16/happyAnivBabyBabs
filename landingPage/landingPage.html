@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary Baby Babs!!!</title>
+    <link rel="stylesheet" href="landingPage.css">
+    <script src="landingPage.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <main class="landing-main-container">
+        <section class="passcode-card">
+            <h1 class="passcode-title">Enter a passcode</h1>
+            <p class="passcode-clue">Clue: a day our relationship started</p>
+
+            <form class="passcode-form" id="passcodeForm" autocomplete="off">
+                <label for="passcode" hidden>Date</label>
+                <input class="passcode-input" id="passcode" type="date" required>
+                <button class="passcode-btn" type="submit">Unlock 💖</button>
+                <p class="passcode-error" id="passcodeError" role="alert"></p>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

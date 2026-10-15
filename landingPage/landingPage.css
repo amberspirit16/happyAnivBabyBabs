@@ -1,0 +1,138 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+    margin: 0;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;      /* stops iOS from resizing text in landscape */
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;                   /* fallback */
+    min-height: 100dvh;
+    opacity: 1;
+    transition: opacity 0.8s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body.fade-out {
+    opacity: 0;
+}
+
+.landing-main-container {
+    min-height: 100vh;                   /* fallback */
+    min-height: 100dvh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    overflow-y: auto;                    /* lets the card scroll when the keyboard is open */
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+        url("../assets/img/BdayCeleb2025V2.jpg") center / cover no-repeat;
+}
+
+.passcode-card {
+    width: 100%;
+    max-width: 420px;
+    padding: clamp(1.5rem, 6vw, 2rem) clamp(1rem, 5vw, 1.5rem);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    color: #fff;
+}
+
+.passcode-title {
+    margin: 0 0 0.5rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+    line-height: 1.15;
+    overflow-wrap: anywhere;             /* long words never push past the card */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.passcode-clue {
+    margin: 0 0 1.5rem;
+    font-family: system-ui, sans-serif;
+    font-size: clamp(0.95rem, 4vw, 1.05rem);
+    line-height: 1.5;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.passcode-form {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.passcode-input,
+.passcode-btn {
+    width: 100%;
+    min-height: 48px;                    /* comfortable thumb target */
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: none;
+    font-family: inherit;
+    font-size: 16px;                     /* below 16px makes iOS zoom in on focus */
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.passcode-input {
+    text-align: center;
+    color: #333;
+    background: rgba(255, 255, 255, 0.95);
+}
+.passcode-input::placeholder { color: #999; }
+.passcode-input:focus-visible,
+.passcode-btn:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+
+.passcode-btn {
+    background: #ff4d79;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, background 0.15s;
+}
+.passcode-btn:active { background: #ff2d63; transform: scale(0.98); }
+
+/* Hover only on devices that actually have a mouse (avoids sticky hover on phones) */
+@media (hover: hover) {
+    .passcode-btn:hover { background: #ff2d63; transform: translateY(-1px); }
+}
+
+.passcode-error {
+    min-height: 1.25rem;
+    margin: 0;
+    color: #ffd1dc;
+    font-size: 0.9rem;
+}
+
+.shake { animation: shake 0.3s; }
+@keyframes shake {
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+
+/* Short screens (phones in landscape): tighten spacing so nothing is cut off */
+@media (max-height: 480px) {
+    .landing-main-container { place-items: start center; }
+    .passcode-card { padding: 1rem; }
+    .passcode-clue { margin-bottom: 0.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body, .passcode-btn { transition: none; }
+    .shake { animation: none; }
+}
